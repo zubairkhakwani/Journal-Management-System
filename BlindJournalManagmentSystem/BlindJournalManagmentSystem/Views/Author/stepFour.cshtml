@@ -1,0 +1,77 @@
+﻿@model BlindJournalManagmentSystem.ViewModels.StepFourViewModel
+@{
+    ViewBag.Title = "stepFour";
+}
+    <div class="col-sm-4" style="padding:35px; ">
+        <partial name="_AuthorSideBar" />
+
+    </div>
+
+<div class="col-sm-8">
+    <div id="4">
+        @using (Html.BeginForm("stepfour", "Author", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <partial name="_FormValidationSummary" />
+
+            <h1> <small>Step 4: Authors & Institutions</small></h1>
+            <p>Enter your co-authors' information in the boxes below, then click "Add to My Authors." To check if an author already exists in the journal's database, enter the author's e-mail address and click "Find." If the author is found, their information will be automatically filled out for you. When you are finished, click "Save and Continue."</p>
+            <br>
+            <p>Author lists should be carefully considered. To determine what constitutes authorship, please visit: IEEE Definitions of Authorship. Changes to the author list post acceptance are not allowed.</p>
+            <br>
+            <p>IEEE Access requires that all authors listed on a manuscript have an ORCID iD associated with their ScholarOne Manuscripts account.</p>
+            <p> <b>ALL AUTHORS LISTED ON YOUR MANUSCRIPT MUST BE ENTERED HERE</b></p>
+            <p> <span class="required">*</span>=Required Fields</p><hr class="hr"><br>
+
+            <h1> <small>Author</small></h1>
+            <h1><small><span class="required">*</span> Selected Authors</small></h1>
+            <table class="table table-striped" id="authors">
+                <thead>
+                    <tr>
+                        <th>ORDER</th>
+                        <th>ACTIONS</th>
+                        <th>AUTHORS</th>
+                        <th>INSTITUTION</th>
+                    </tr>
+                </thead>
+                <tbody id="addAuthorBody">
+                    @if (Model.AuthorsEmails != null)
+                    {
+                        for (int i = 0; i < Model.AuthorsEmails.Count(); i++)
+                        {
+                            <tr>
+                                <td></td>
+                                <td>
+                                    @if (i != 0)
+                                    {<button type="button" class="btn btn-danger"> remove </button>}
+                                </td>
+                                <td>
+                                    <input type="hidden" name="AuthorsEmails" value="@Model.AuthorsEmails.ElementAt(i)" />
+                                    @Model.AuthorsEmails.ElementAt(i)
+                                </td>
+                                <td> @Model.AuthorsInstitutions.ElementAt(i) </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table><hr class="hr">
+            <h3><small><b>Add Author</b></small></h3>
+            <p>Find using Author's email address</p>
+            <div class="input-group">
+                <input type="email" class="form-control" placeholder="AuthorEmail@example.com" name="search" id="search">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-primary" id="searchButton"> <i class="glyphicon glyphicon-search"></i> Search</button>
+                </div>
+            </div>
+            <br>
+            <br>
+            <hr class="hr">
+            <button type="submit" class="btn btn-primary pull-right">Save & Continue <span class="glyphicon glyphicon-chevron-right"></span> </button>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/stepFourAddAuthor.js"></script>
+}

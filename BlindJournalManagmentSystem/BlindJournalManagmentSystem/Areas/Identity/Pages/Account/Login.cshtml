@@ -1,0 +1,79 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<h1>@ViewData["Title"]</h1>
+    <div class="col-sm-4">
+        <div class="wrap-login">
+            <form id="account" method="post">
+                <h4>Use a local account to log in.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe">
+                            <input asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </div>
+
+                <div class="form-group">
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                </div>
+            </form>
+            </div>
+        </div>
+   
+    <div class="content col-sm-8">
+        <p> <b>Welcome to the submission site for</b></p>
+        <h1><small>IEEE Access</small></h1>
+        <p>To begin, log in with your user ID and password.</p>
+        <p>If you are unsure about whether or not you have an account, or have forgotten your password, go to the <a href="#">Reset Password</a> screen.</p>
+        <img src="https://clarivate.com/wp-content/uploads/2019/08/JCR_WSG_19_Badge.png" alt="l" width="120px;" height="120px;">
+        <p><b>IEEE Access received an impact factor of 4.098 in the 2018 JCR release.</b></p>
+        <br>
+        <p>Find us on the following social media channels:</p>
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Linkedin_icon.svg" alt="linkin" width="80px;" height="80px;"></a>
+        <a href="#"><img src="https://www.freeiconspng.com/uploads/vector-logos-high-resolution-logos-logo-designs-facebook-icon-vector-6.png" alt="linkin" width="75px;" height="75px;"></a>
+        <a href="#"><img src="http://pngimg.com/uploads/twitter/twitter_PNG32.png" alt="linkin" width="75px;" height="75px;"></a>
+        <a href="#"><img src="https://is5-ssl.mzstatic.com/image/thumb/Purple71/v4/35/9f/bf/359fbfb8-309b-1df2-2a66-82bb9bb124e5/source/512x512bb.jpg" alt="linkin" width="75px;" height="75px;"></a><br><br><br>
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/qExnPdge6ps" width="1280" height="720" frameborder="0" allowfullscreen></iframe>
+        </div><br><br><br>
+
+        <p>
+            <b>
+                <em>
+                    IEEE takes the protection of intellectual property seriously. Accordingly, all submissions are filtered by CrossCheck, a powerful plagiarism detection software system. By submitting your work you agree to allow IEEE to screen your work. When plagiarism is detected, penalties can be severe and may include strict banning from publishing in all IEEE titles. Please consult <a href="#">http://www.ieee.org/documents/opsmanual.pdf</a> Section 8.2.4. to read about IEEE plagiarism policies. For more information please visit: <a href="#">http://www.crossref.org/crosscheck/index.html</a>
+                </em>
+
+            </b>
+
+        </p>
+    </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

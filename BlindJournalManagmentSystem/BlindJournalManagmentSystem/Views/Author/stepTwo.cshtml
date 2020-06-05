@@ -1,0 +1,134 @@
+﻿@model BlindJournalManagmentSystem.ViewModels.StepTwoViewModel
+@{
+    ViewBag.Title = "~stepTwo";
+}
+    <div class="col-sm-4" style="padding:35px; ">
+        <partial name="_AuthorSideBar" />
+
+    </div>
+
+<div class="col-sm-8">
+    <div id="2">
+
+        @using (Html.BeginForm("stepTwo", "author", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <partial name="_FormValidationSummary" />
+
+            <h1> <small>Step 2: File Upload</small></h1>
+            <p style="color:red; font-size:20px;"> <b>ATTENTION:</b></p>
+            <p>Your manuscript must be prepared using a standard IEEE double column template. Once formatted, you must convert your manuscript to PDF before you upload it for review:</p>
+            <ul>
+                <li>IEEE Word Template: <a href="#">(DOCX)</a></li>
+                <li>IEEE LaTex Template: <a href="#">(ZIP)(TAR)</a></li>
+                <br>
+            </ul>
+            <p>Upload as many files as needed for your manuscript in groups of five or fewer. If you have more than five files for your manuscript you should upload the first five and then you will have the option to upload an additional five files. This process will continue until ALL files have been uploaded. These files will be combined into a single PDF document for the peer review process.</p><br>
+            <p>To designate the order in which your files appear, use the dropdowns in the "order" column below. View your uploaded files by clicking on HTML or PDF. When you are finished, click "Save and Continue”.</p>
+
+            <h1> <small>File Upload</small></h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>SELECTION</th>
+                        <th>FILE DESIGNATION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label class="btn btn-default btn-file">
+                                <span class="glyphicon glyphicon-paperclip"></span>
+                                Select File 1....@Html.TextBoxFor(m => m.Files, new { type = "file" })
+                            </label>
+                        </td>
+                        <td>
+                            <span style="color:red; font-size:20px;">*</span>
+                            <input name="Designation" readonly value="Formatted (Double Column) Main File - PDF Document Only" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="btn btn-default btn-file">
+                                <span class="glyphicon glyphicon-paperclip"></span>
+                                Select File 2....<input type="file" name="Files">
+                            </label>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" id="sel1" name="Designation">
+                                    <option>Figure</option>
+                                    <option>Supplemental File For Review</option>
+                                    <option>Multimedia</option>
+                                    <option>Author bios (PDF or Microsoft Word only)</option>
+                                    <option>Graphical Abstract</option>
+                                    <option>Final Files for Accepted Paper</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="btn btn-default btn-file">
+                                <span class="glyphicon glyphicon-paperclip"></span>
+                                Select File 3....<input type="file" name="Files">
+                            </label>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" id="sel1" name="Designation">
+                                    <option>Figure</option>
+                                    <option>Supplemental File For Review</option>
+                                    <option>Multimedia</option>
+                                    <option>Author bios (PDF or Microsoft Word only)</option>
+                                    <option>Graphical Abstract</option>
+                                    <option>Final Files for Accepted Paper</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="btn btn-default btn-file">
+                                <span class="glyphicon glyphicon-paperclip"></span>
+                                Select File 4....<input type="file" name="Files">
+                            </label>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" id="sel1" name="Designation">
+                                    <option>Figure</option>
+                                    <option>Supplemental File For Review</option>
+                                    <option>Multimedia</option>
+                                    <option>Author bios (PDF or Microsoft Word only)</option>
+                                    <option>Graphical Abstract</option>
+                                    <option>Final Files for Accepted Paper</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="btn btn-default btn-file">
+                                <span class="glyphicon glyphicon-paperclip"></span>
+                                Select File 5....<input type="file" name="Files">
+                            </label>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" id="sel1" name="Designation">
+                                    <option>Figure</option>
+                                    <option>Supplemental File For Review</option>
+                                    <option>Multimedia</option>
+                                    <option>Author bios (PDF or Microsoft Word only)</option>
+                                    <option>Graphical Abstract</option>
+                                    <option>Final Files for Accepted Paper</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary pull-right">Save & Continue <span class="glyphicon glyphicon-chevron-right"></span> </button>
+        }
+    </div>
+</div>

@@ -1,0 +1,74 @@
+﻿@model BlindJournalManagmentSystem.ViewModels.StepSixViewModel
+@{
+    ViewBag.Title = "stepSix";
+}
+    <div class="col-sm-4" style="padding:35px; ">
+        <partial name="_AuthorSideBar" />
+
+    </div>
+
+<div class="col-sm-8">
+    <div id="6">
+        @using (Html.BeginForm("stepsix", "Author", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <partial name="_FormValidationSummary" />
+
+
+            <h1> <small><b>Step 6: Details & Comments</b></small></h1>
+            <p>Enter or paste your cover letter text into the "Cover Letter" box below. If you would like to attach a file containing your cover letter, click the "Browse..." button, locate your file, and click "Attach this Cover Letter." Answer any remaining questions appropriately. When you are finished, click "Save and Continue."</p>
+            <p>Please note that the cover letter is not visible to reviewers.</p>
+            <p> <span class="required">*</span> =Required Fields</p>
+            <hr class="hr">
+            <h1> <small>Cover Letter</small></h1>
+            <p><b>write Cover letter</b></p>
+            <div class="form-group">
+                <br>
+                @Html.TextAreaFor(m => m.CoverLetter, new { @class = "form-control" })
+            </div>
+
+            <h1> <small>Funding</small></h1>
+            <p><span class="required">*</span>  Is there funding to report for this submission?</p>
+            <label class="radio-inline">
+                @Html.RadioButtonFor(m => m.IsThereFundingToReportForThisSubmission, "Yes") Yes
+            </label>
+            <label class="radio-inline">
+                @Html.RadioButtonFor(m => m.IsThereFundingToReportForThisSubmission, "No") NO
+            </label><br><br>
+
+            <hr class="hr2"><br>
+
+            <fieldset class="F">
+                <label>@Html.EditorFor(m => m.SubmittedSolelyToThisJournal) <span class="required">*</span> Confirm that the manuscript has been submitted solely to this journal and is not published, in press, or submitted elsewhere.</label>
+            </fieldset><br><br>
+
+            <fieldset class="F">
+                <p> <span class="required">*</span> Has this manuscript been submitted previously to this journal?</p>
+                <div class="radio">
+                    <label> @Html.RadioButtonFor(m => m.PreviouslySubmittedRadioButton, "Yes") Yes</label>
+                </div>
+                <div class="radio">
+                    <label> @Html.RadioButtonFor(m => m.PreviouslySubmittedRadioButton, "No") No</label>
+                </div><hr>
+                <p>If yes, what is the manuscript ID of the previous submission.</p>
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        @Html.TextBoxFor(m => m.PreviouSubmittedArticleId, new { @class = "form-control" })
+                    </div><br><br>
+                </div>
+            </fieldset><br><br>
+
+            <fieldset class="F">
+                <p><span class="required">*</span> <b>Does your manuscript contain supplementary materials such as multimedia, extended objects, or any other item intended for publication but not included in the main body of the paper? Supplementary materials must go through review and may not be added after acceptance.</b></p><hr>
+                <div class="radio">
+                    <label> @Html.RadioButtonFor(m => m.DoesContainSupplementaryMaterial, "Yes") Yes</label>
+                </div>
+                <div class="radio">
+                    <label> @Html.RadioButtonFor(m => m.DoesContainSupplementaryMaterial, "No") No</label>
+                </div>
+            </fieldset><br><br><br>
+
+            <hr class="hr2">
+            <button type="submit" class="btn btn-primary pull-right">Save & Continue <span class="glyphicon glyphicon-chevron-right"></span> </button>
+        }
+    </div>
+</div>

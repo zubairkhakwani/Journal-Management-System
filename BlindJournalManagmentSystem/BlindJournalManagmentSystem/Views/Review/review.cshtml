@@ -1,0 +1,53 @@
+﻿@model reviewViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="reviewArticleDetail">
+    <div>
+        <h3>Article Title</h3>
+        <p>@Model.Title</p>
+    </div>
+
+    <div>
+        <h3>Article Abstract</h3>
+        <p>@Model.Abstract</p>
+    </div>
+
+    <div>
+        <h3>Article Cover Letter</h3>
+        <p>@Model.CoverLetter</p>
+    </div>
+</div>
+
+<br />
+
+<div class="reviewAnswers">
+    <h3>Review This Article</h3>
+    <form asp-action="review" asp-controller="review" method="post" asp-route-id="@Model.ArticleId">
+        @foreach (Questions question in Model.questions)
+        {
+            <div class="form-group">
+                <h3>@question.Question</h3>
+                @if (question.type == "radio")
+                {
+                    <div class="radio">
+                        <label><input value="yes" type="@question.type" asp-for="answers[question.Id]" required/> Yes</label>
+                        <label><input value="no" type="@question.type" asp-for="answers[question.Id]" /> No</label>
+                    </div>
+                }
+                else if (question.type == "textarea")
+                {
+                    <textarea class="form-control" rows="5" cols="40" type="@question.type" asp-for="answers[question.Id]" required></textarea>
+                }
+                else
+                {
+                    <input class="form-control" type="@question.type" asp-for="answers[question.Id]" value="" required/>
+                }
+            </div>
+
+        }
+        <div class="form-group">
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</div>

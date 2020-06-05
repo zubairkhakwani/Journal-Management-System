@@ -1,0 +1,46 @@
+﻿@model AssociateEditorIndexViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="col-sm-4" style="padding:35px; ">
+    <partial name="_AssociateEditorSideBar" />
+</div>
+
+<div class="col-sm-8">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Article Id</th>
+                <th>Article Type</th>
+                <th>Article Title</th>
+                <th>Previously Submitted</th>
+                <th>Assign Reviewer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Article article in Model.articles)
+            {
+                <tr>
+                    <td>@article.Id</td>
+                    <td>@article.Type</td>
+                    <td>@article.Title</td>
+                    @{
+                        if (article.PreviousSubmittedArticleId == null)
+                        {
+                            <td>No</td>
+                        }
+                        else
+                        {
+                            <td>@article.PreviousSubmittedArticleId</td>
+                        }
+                    }
+
+                    <td><a asp-action="Article" asp-controller="associateeditor" asp-route-id="@article.Id">Assign Reviewer</a></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

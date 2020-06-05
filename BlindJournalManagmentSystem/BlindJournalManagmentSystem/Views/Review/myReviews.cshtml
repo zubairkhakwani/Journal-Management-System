@@ -1,0 +1,41 @@
+﻿@model List<Invitation>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="col-sm-4" style="padding:35px; ">
+    <partial name="_ReviewSidebar" />
+</div>
+
+<div class="col-sm-8">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Article Title</th>
+                <th>Authors</th>
+                <th>Reviewed By</th>
+                <th>Comment for Associate Editor</th>
+                <th>Comment for Authors</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Invitation i in Model)
+            {
+                <tr>
+                    <td>@i.Article.Title</td>
+                    <td>
+                        @foreach (AuthorsAndOpposedReviewers author in i.Article.AuthorsAndOpposedReviewers)
+                        {
+                            if (author.role == "coAuthor")
+                            {
+                                <p>@author.User.Email</p>
+                            }
+                        }
+                    </td>
+                    <td>@i.User.FirstName</td>
+                    <td>@i.ArticleReviews.Single(ar => ar.questionid == 7).answer</td>
+                    <td>@i.ArticleReviews.Single(ar => ar.questionid == 8).answer</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

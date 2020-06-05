@@ -1,0 +1,50 @@
+﻿@model IList<ReviewInvitationViewModel>
+@{
+    ViewData["Title"] = "Articles To Review";
+}
+
+<div class="col-sm-4" style="padding:35px; ">
+    <partial name="_ReviewSidebar" />
+</div>
+
+<div class="col-sm-8">
+    <partial name="_SuccessErrorPartialView"></partial>
+    @if(Model.Count == 0)
+    {
+        <h3 style="text-align:center">Currently No Articles To Review</h3>
+    }
+    @foreach (ReviewInvitationViewModel acceptedInvitation in Model)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Article Title</th>
+                    <th>Article Authors</th>
+                    <th>Files</th>
+                    <th>Review</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <form method="post" asp-action="actionOnInvitation" asp-controller="review" asp-route-id="@acceptedInvitation.invitationId">
+                    <tr>
+                        <td>@acceptedInvitation.ArticleTitle</td>
+                        <td>
+                            @foreach (String author in acceptedInvitation.Authors)
+                            {
+                                <p>@author</p>
+                            }
+                        </td>
+                        <td>
+                            @foreach (String file in acceptedInvitation.Files)
+                            {
+                                <p><a href="~/files/@file" target="_blank">@file</a></p>
+                            }
+                        </td>
+                        <td><a asp-action="review" asp-controller="review" asp-route-id="@acceptedInvitation.ArticleId">Review</a></td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+    }
+</div>

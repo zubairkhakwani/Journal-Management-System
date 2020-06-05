@@ -1,0 +1,45 @@
+﻿<table class="table table-bordered table-hover" style="width:280px; margin-left:50px;">
+    <thead>
+        <tr>
+            <th><b>Submission</b></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a href="@Url.Action("index","author")" style="text-decoration:none;">
+                    Begin Submission
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a href="@Url.Action("incompleteSubmission","author")" style="text-decoration:none;">
+                    Incomplete Submission
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a asp-action="reviewerComments" asp-controller="author" style="text-decoration:none;">
+                    Reviewer Comments
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a asp-action="myArticles" asp-controller="author" style="text-decoration:none;">
+                    All Submitted Articles
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

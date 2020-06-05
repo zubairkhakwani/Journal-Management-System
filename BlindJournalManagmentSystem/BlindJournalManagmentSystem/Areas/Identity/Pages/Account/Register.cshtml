@@ -1,0 +1,82 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+<div class="col-sm-12">
+    <div class="wrap-register">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+
+            @Html.AntiForgeryToken()
+            <h4>Create a new account.</h4>
+            <hr />
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-sm-3">
+                    @Html.LabelFor(m => m.Input.User.Prefix, new { @class = " control-label" })
+                </div>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.Input.User.Prefix, new { @class = "form-control" })
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3">@Html.LabelFor(m => m.Input.User.Email, new { @class = " control-label" })</div>
+                <div class="col-sm-9">@Html.TextBoxFor(m => m.Input.User.Email, new { @class = "form-control" })</div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3">@Html.LabelFor(m => m.Input.User.FirstName, new { @class = " control-label" })</div>
+                <div class="col-sm-9">@Html.TextBoxFor(m => m.Input.User.FirstName, new { @class = "form-control" })</div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3">@Html.LabelFor(m => m.Input.User.LastName, new { @class = " control-label" })</div>
+                <div class="col-sm-9">@Html.TextBoxFor(m => m.Input.User.LastName, new { @class = "form-control" })</div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3">@Html.LabelFor(m => m.Input.User.Degree, new { @class = " control-label" })</div>
+                <div class="col-sm-9">@Html.TextBoxFor(m => m.Input.User.Degree, new { @class = "form-control" })</div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3">@Html.LabelFor(m => m.Input.User.Department, new { @class = " control-label" })</div>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Input.User.Department, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3">@Html.LabelFor(m => m.Input.User.FieldsIds, new { @class = " control-label" })</div>
+                <div class="col-sm-9">@Html.DropDownListFor(m => m.Input.User.FieldsIds, Model.Input.AllFields, "------", new { @class = "form-control", @multiple = "", @style = "height: 140px" })</div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3">@Html.LabelFor(m => m.Input.User.InstitutionId, new { @class = " control-label" })</div>
+                <select asp-for="Input.User.InstitutionId" asp-items="Model.Input.AllInstitutions" class="form-control"> </select>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3">@Html.LabelFor(m => m.Input.Password, new { @class = " control-label" })</div>
+                <div class="col-sm-9">@Html.PasswordFor(m => m.Input.Password, new { @class = "form-control" })</div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3">@Html.LabelFor(m => m.Input.ConfirmPassword, new { @class = " control-label" })</div>
+                <div class="col-sm-9">@Html.PasswordFor(m => m.Input.ConfirmPassword, new { @class = "form-control" })</div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Register" />
+            </div>
+        </form>
+</div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

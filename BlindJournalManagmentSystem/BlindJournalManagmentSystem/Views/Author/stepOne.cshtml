@@ -1,0 +1,122 @@
+﻿@model BlindJournalManagmentSystem.ViewModels.StepOneViewModel
+@{
+    ViewBag.Title = "stepOne";
+}
+    <div class="col-sm-4" style="padding:35px; ">
+        <partial name="_AuthorSideBar" />
+
+    </div>
+
+<div class="col-sm-8">
+    <div id="1">
+        <h1><small>Step 1: Type, Title, & Abstract</small> </h1>
+        <p>Select your manuscript type. Enter your title, running head, and abstract into the appropriate boxes below. When you are finished, click "Save and Continue."</p>
+
+
+        @using (Html.BeginForm("stepOne", "author", new { }, FormMethod.Post))
+        {
+            <partial name="_FormValidationSummary" />
+
+
+            <fieldset class="static">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Choice</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var type in Model.types)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="radio">
+                                        <label> @Html.RadioButtonFor(m => m.Type, @type)</label>
+                                    </div>
+                                </td>
+                                <td>@type</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </fieldset>
+
+            <hr style="height:3px; background-color:silver;">
+
+            <h1> <small> <span class="required">*</span>Title</small></h1>
+            <div class="form-group">
+                <br>
+                @Html.TextAreaFor(m => m.Title, new { @rows = "5", @id = "comment", @class = "form-control" })
+
+            </div><hr style="height:3px; background-color:silver;"><br><br><br>
+
+            <h1> <small> <span class="required">*</span>Abstract</small></h1>
+            <h2> <small>(Be sure to define ALL acronyms in the abstract.)</small></h2>
+            <p> <b>Write or Paste Abstract</b></p>
+            <div class="form-group">
+                <br>
+                @Html.TextAreaFor(m => m.Abstract, new { @rows = "5", @id = "comment", @class = "form-control" })
+            </div><br><br>
+
+            <hr style="height:1px; background-color:silver;">
+            <p style="background-color: #6495ED; color:white; height:35px; padding:6px;"> &nbsp;<b>Open Access Agreement</b></p>
+            <div class="checkbox">
+
+                <lable>
+                    @Html.EditorFor(m => m.OpenAccessAgreement, new { @value = "true" })
+                    <span style="color:red; font-size:18px;">*</span>
+                    I have read and agree to the terms below.
+                </lable><hr style="height:1px; background-color:silver;">
+                <p>By submitting this manuscript to IEEE Access, I agree that if accepted, it will be published as open access and that I am responsible for the open access publication fee of US $1,750.</p>
+                <p>Some institutions offer assistance for open access funding. Check our institutional partners list to see if yours is one.</p>
+                <hr style="height:1px; background-color:silver;">
+            </div><br>
+
+
+            <hr style="height:1px; background-color:silver;">
+            <p style="background-color: #6495ED; color:white; height:35px; padding:6px;"> &nbsp;<b>Plagiarism Confirmation</b></p>
+            <div class="checkbox">
+                <lable>
+                    @Html.EditorFor(m => m.PlagiarismConfirmation, new { @value = "true" })
+                    <span style="color:red; font-size:18px;">*</span>
+                    I have read and agree to the IEEE Access plagiarism policy below.
+                </lable>
+                <hr style="height:1px; background-color:silver;">
+                <p>
+                    <b>
+                        By submitting this manuscript to IEEE Access, I certify that I have not copied a substantial
+                        amount of text from another author’s published work without citing it properly. I also understand
+                        that IEEE Access uses CrossCheck that can automatically detect and identify plagiarism.
+                    </b>
+                </p>
+                <hr style="height:1px; background-color:silver;">
+            </div><br>
+            <hr style="height:1px; background-color:silver;">
+            <p style="background-color: #6495ED; color:white; height:35px; padding:6px;"> &nbsp;<b>Duplicate Submission Confirmation</b></p>
+            <div class="checkbox">
+                <lable>
+                    @Html.EditorFor(m => m.DuplicateSubmissionConfirmation, new { @value = "true" })
+
+                    <span style="color:red; font-size:18px;">*</span>
+                    I have read and agree to the terms below.
+                </lable>
+                <hr style="height:1px; background-color:silver;">
+                <p>
+                    <b>
+                        By submitting this manuscript to IEEE Access, I certify that this article is not currently being
+                        considered for publication elsewhere and understand that duplicate submission could result in a ban
+                        of all IEEE publications for all authors.
+                    </b>
+                </p>
+                <hr style="height:1px; background-color:silver;"><br>
+                <hr style="height:4px; background-color:silver;">
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-left:700px;">Save & Continue <span class="glyphicon glyphicon-chevron-right"></span></button><br><br><br><br>
+
+        }
+    </div>
+
+</div>

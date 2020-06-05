@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-BlindJournalManagmentSystem-1A6502DB-E995-4920-8849-C0318FBFD3B0</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200203114438_Inital.cs" />
+    <Compile Remove="Data\Migrations\20200203114438_Inital.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200204090331_AddingFilesTable.cs" />
+    <Compile Remove="Data\Migrations\20200204090331_AddingFilesTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200204090549_AddingSubjectCategoryTableTable.cs" />
+    <Compile Remove="Data\Migrations\20200204090549_AddingSubjectCategoryTableTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200204100056_CreatingManyToManyBetweenApplicationUserAndField.cs" />
+    <Compile Remove="Data\Migrations\20200204100056_CreatingManyToManyBetweenApplicationUserAndField.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200204104540_asd.cs" />
+    <Compile Remove="Data\Migrations\20200204104540_asd.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200204120101_CreatingManyToManyBetweenArticleAndField2.cs" />
+    <Compile Remove="Data\Migrations\20200204120101_CreatingManyToManyBetweenArticleAndField2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200207074646_asd.cs" />
+    <Compile Remove="Data\Migrations\20200207074646_asd.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200213090943_AddingArticleReviewsTable213.cs" />
+    <Compile Remove="Data\Migrations\20200213090943_AddingArticleReviewsTable213.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200224091840_UpdatingArticleReviewsTable.cs" />
+    <Compile Remove="Data\Migrations\20200224091840_UpdatingArticleReviewsTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200224092727_creatingInvitationTable.cs" />
+    <Compile Remove="Data\Migrations\20200224092727_creatingInvitationTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200224092919_creatingInvitationTable.cs" />
+    <Compile Remove="Data\Migrations\20200224092919_creatingInvitationTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200224093039_creatingInvitationTable.cs" />
+    <Compile Remove="Data\Migrations\20200224093039_creatingInvitationTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200224094633_removeArticleReivewTbale.cs" />
+    <Compile Remove="Data\Migrations\20200224094633_removeArticleReivewTbale.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200224094913_test2.cs" />
+    <Compile Remove="Data\Migrations\20200224094913_test2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200224095439_test2.cs" />
+    <Compile Remove="Data\Migrations\20200224095439_test2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200229095032_AddingIdANdApplicationUserIdInArticleReviewTable.cs" />
+    <Compile Remove="Data\Migrations\20200229095032_AddingIdANdApplicationUserIdInArticleReviewTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200504103626_AddingArticleReviewTable.cs" />
+    <Compile Remove="Data\Migrations\20200504103626_AddingArticleReviewTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200504104104_AddingArticleReviewTable.cs" />
+    <Compile Remove="Data\Migrations\20200504104104_AddingArticleReviewTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200506075710_test2.cs" />
+    <Compile Remove="Data\Migrations\20200506075710_test2.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\files\" />
+  </ItemGroup>
+
+</Project>

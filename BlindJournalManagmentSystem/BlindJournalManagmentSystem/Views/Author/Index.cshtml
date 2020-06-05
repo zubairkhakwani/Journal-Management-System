@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Start New Submission";
+}
+
+@if (TempData["notice"] != null)
+{
+    <h1>@TempData["notice"]</h1>
+}
+<div class="col-sm-4" style="padding:35px; ">
+   <partial name="_AuthorIndexSideBar"/>
+</div>
+
+<div class="col-sm-8">
+
+    <div id="0">
+        <h1><small><b>Start new Submission</b></small> </h1>
+        <p>
+            Before submitting your article, please review the IEEE Access
+            <a href="#" style="text-decoration:none;">Information for Authors</a>
+            page to ensure your manuscript adheres to all of the journal requirements
+        </p>
+        <p>
+            <b>ATTENTION:</b>Your manuscript must be prepared using a standard IEEE
+            double column template. Once formatted, you must convert your manuscript
+            to PDF before you upload it for review:
+        </p>
+        <ul>
+            <li>IEEE Word Template: <a href="#">(DOCX)</a></li>
+            <li>IEEE LaTex Template: <a href="#">(ZIP)</a></li>
+        </ul>
+        <hr>
+        <p>Traditional submission allows you to upload files that were created from many sources.</p>
+        <a asp-controller="author" asp-action="stepone" class="btn btn-primary">Begin Submission</a>
+    </div>
+</div>

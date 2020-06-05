@@ -1,0 +1,108 @@
+﻿@model BlindJournalManagmentSystem.ViewModels.StepThreeViewModel
+@{
+    ViewBag.Title = "stepThree";
+}
+    <div class="col-sm-4" style="padding:35px; ">
+        <partial name="_AuthorSideBar" />
+
+    </div>
+
+<div class="col-sm-8">
+    <div id="3">
+        @using (Html.BeginForm("stepthree", "Author", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <partial name="_FormValidationSummary" />
+
+
+            <h1> <small>Step 3:Attributes</small></h1>
+            <p>You may enter your manuscript attributes/keywords in two different ways: search the journal's list of keywords by typing in a term and clicking "Search" or select your keywords from the list (Control-Click to select multiple words) and click "Add". When you are finished, click "Save and Continue."</p>
+            <p> <span class="required">*</span> = Required Fields</p><hr class="hr">
+
+            <div class="form-group">
+                <label for="FieldsIds"> (Hold Ctrl To Select More Than One) </label>
+                <br>
+                @Html.DropDownListFor(m => m.UseAsDummy, Model.AllFields, new { @class = "form-control", @id = "FieldsIds", @multiple = "", @style = "height: 140px" })
+                <br>
+                <button type="button" class="btn btn-primary" id="addFields">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    ADD
+                </button>
+
+                <br><br>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>KEYWORDS: PLEASE CHOOSE KEYWORDS CAREFULLY AS THEY HELP US FIND THE MOST SUITABLE EDITOR TO REVIEW</th>
+                    </tr>
+                </thead>
+                <tbody id="fieldsTable">
+                    @if (Model.FieldsIds != null)
+                    {
+                        foreach (var fieldId in Model.FieldsIds)
+                        {
+                            var id = Int32.Parse(fieldId);
+                            <tr>
+                                <td>
+                                    <input name="FieldsIds" type="hidden" value="@id" />
+                                    @Model.AllFields.SingleOrDefault(af => af.Value == id.ToString()).Text
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger"> remove </button>
+                                </td>
+                            </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
+            <hr class="hr2"> <br><br>
+            <h1> <small><span class="required">*</span> Subject Category</small></h1>
+
+            <div class="form-group">
+                <label for="SubjectCategoriesIds"> Please select at least two subject categories that best reflect the scope of your manuscript </label>
+                <br>
+                @Html.DropDownListFor(m => m.UseAsDummy, Model.AllSubjectCategories, new { @class = "form-control", @id = "SubjectCategoriesIds", @multiple = "", @style = "height: 140px" })
+                <br>
+                <button type="button" class="btn btn-primary" id="addCategories">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    ADD
+                </button>
+                <br><br>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+
+                </thead>
+                <tbody id="categoriesTable">
+                    @if (Model.SubjectCategoriesIds != null)
+                    {
+                        foreach (var SubjectCategoryId in Model.SubjectCategoriesIds)
+                        {
+                            var id = Int32.Parse(SubjectCategoryId);
+                            <tr>
+                                <td>
+                                    <input name="SubjectCategoriesIds" type="hidden" value="@id" />
+                                    @Model.AllSubjectCategories.SingleOrDefault(af => af.Value == id.ToString()).Text
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger"> remove </button>
+                                </td>
+                            </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
+            <hr class="hr2">
+
+            <button type="submit" class="btn btn-primary pull-right">Save & Continue <span class="glyphicon glyphicon-chevron-right"></span> </button>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/stepThree.js"></script>
+}

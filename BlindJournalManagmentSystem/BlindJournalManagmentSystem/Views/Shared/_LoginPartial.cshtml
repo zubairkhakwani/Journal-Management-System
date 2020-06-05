@@ -1,0 +1,30 @@
+﻿        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="active" class="dropdown" style="margin:5px;" class="col-xs-3">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Profile <span class="caret"></span> </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a title="Manage">Hello @User.Identity.Name!</a>
+                    </li>
+                    <li>
+                        <a  asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> Manage </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:document.getElementById('logoutForm').submit()"><span class="glyphicon glyphicon-log-out"></span> Log out </a>
+                <form class="navbar-right" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                </form>
+            </li>
+
+        }
+        else
+        {
+            <li>
+                <a  asp-area="Identity" asp-page="/Account/Register" id="registerLink">Register</a>
+            </li>
+            <li>
+                <a  asp-area="Identity" asp-page="/Account/Login" id="loginLink">Login</a>
+            </li>
+        }

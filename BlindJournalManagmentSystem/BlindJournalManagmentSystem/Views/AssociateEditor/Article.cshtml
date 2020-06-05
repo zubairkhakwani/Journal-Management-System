@@ -1,0 +1,147 @@
+﻿@model AssociateEditorArticleViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<string> AuthorsEmails = new List<string>();
+}
+
+<div class="col-sm-4">
+    <h3>Article Detail</h3>
+    <dl class="dl-horizontal">
+        <dt>Title</dt>
+        <dd>@Model.article.Title</dd>
+
+        <dt>Abstract</dt>
+        <dd>@Model.article.Abstract</dd>
+
+        <dt>Status</dt>
+        <dd>@Model.article.Status</dd>
+    </dl>
+</div>
+
+<div class="col-sm-4">
+    <h3>Authors</h3>
+
+    <dl class="dl-horizontal">
+        @foreach (AuthorsAndOpposedReviewers author in Model.article.AuthorsAndOpposedReviewers)
+        {
+            @if (author.role == "coAuthor")
+            {
+                <dt>@author.User.FirstName</dt>
+                <dd>@author.User.Email</dd>
+                AuthorsEmails.Add(author.User.Email);
+            }
+        }
+    </dl>
+</div>
+
+<div class="col-sm-4">
+    <h3>Opposed Reviewers</h3>
+
+    <dl class="dl-horizontal">
+        @foreach (AuthorsAndOpposedReviewers author in Model.article.AuthorsAndOpposedReviewers)
+        {
+            @if (author.role == "opposerReviewer")
+            {
+                <dt>@author.User.FirstName</dt>
+                <dd>@author.User.Email</dd>
+            }
+        }
+    </dl>
+</div>
+
+<br />
+<br />
+
+
+
+<div class="col-sm-12">
+    <form asp-action="AssignReviewer" asp-controller="AssociateEditor" asp-route-id="@Model.article.Id" method="post">
+        @Html.Partial("_SuccessErrorPartialView")
+        <table class="table" id="inviteTable">
+            <h3>Invited Authors List</h3>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Request Status</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Invitation invitaion in Model.invitedReviewers)
+                {
+                    <tr>
+                        <td>
+                            <input name="reviewersEmails" type="email" class="hidden" value="@invitaion.User.Email"></input>
+                            @invitaion.User.Email
+                        </td>
+                        <td>
+                            @invitaion.status
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" id="removeInvite">remove</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+    <h2>Invite Authors To Review This Article</h2>
+
+    <table class="table">
+        <thead>
+        <td>Email</td>
+        <td>First Name / Last Name</td>
+        <td>Conflict</td>
+        <td>Invite To Review</td>
+        </thead>
+        <tbody>
+            @foreach (ApplicationUser user in Model.users)
+            {
+            <tr>
+                <td id="userEmail">@user.Email</td>
+                <td>@user.FirstName / @user.LastName</td>
+                <td>
+                    @{
+                        if (Model.article.AuthorsAndOpposedReviewers.Where(ao => ao.role.Equals("coAuthor")).Select(ao => ao.User.institution.Name).Contains(user.institution.Name))
+                        {
+                            <p> "From Same Institution" </p>
+                        }
+
+
+                        IList<int> ArticleIdsWhereUserIsCoAuthor =
+                            Model.authorsAndOpposedReviewers
+                            .Where(ao => ao.User.Email == user.Email && ao.role == "coAuthor")
+                            .Select(ao=>ao.ArticleId).ToList();
+
+                        IList<AuthorsAndOpposedReviewers> workedTogetherPreviously = Model.authorsAndOpposedReviewers
+                            .Where(ao => ArticleIdsWhereUserIsCoAuthor.Contains(ao.ArticleId) 
+                                && AuthorsEmails.Contains(ao.User.Email) && ao.role == "coAuthor")
+                            .ToList();
+
+                        if (workedTogetherPreviously.Count != 0)
+                        {
+                            <p> "Previously Work Together." </p>
+                        }
+
+                        if (Model.article.AuthorsAndOpposedReviewers.Where(ao => ao.role == "opposerReviewer").Select(ao => ao.User.Email).Contains(user.Email))
+                        {
+                            <p> "Author Added This User As Opposed Reviewer" </p>
+                        }
+                    }
+                </td>
+                    <td><button class="btn btn-primary inviteButton">Invite</button></td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+@section Scripts{
+
+    <script src="~/js/addReviewersnIntoInviteTable.js"></script>
+}

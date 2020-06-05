@@ -1,0 +1,22 @@
+﻿@model Article
+@{
+    ViewBag.Title = "stepSeven";
+}
+    <div class="col-sm-4" style="padding:35px; ">
+        <partial name="_AuthorSideBar" />
+
+    </div>
+
+<div class="col-sm-8">
+    <div id="7">
+        @using (Html.BeginForm("stepseven", "author", FormMethod.Post))
+        {
+            @Html.Partial("_FormValidationSummary")
+            <button type="submit" class="btn btn-primary">
+                Submit
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+        }
+    </div>
+</div>
+

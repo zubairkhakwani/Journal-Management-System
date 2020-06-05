@@ -1,0 +1,141 @@
+﻿@inject UserManager<ApplicationUser> UserManager2
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BlindJournalManagmentSystem</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style media="screen">
+        * {
+            box-sizing: border-box;
+        }
+
+        .navbar-inverse {
+            background-color: #222222;
+            border-color: silver;
+        }
+
+        .table th {
+            background-color: #6495ED;
+            color: white;
+        }
+
+        .static {
+            position: static;
+            border: 1px solid silver;
+            height: 350px;
+            width: 800px;
+            overflow: auto;
+            border-radius: 6px;
+        }
+
+        .required {
+            color: red;
+            font-size: 30px;
+        }
+
+        .hr {
+            height: 2px;
+            background-color: silver;
+        }
+
+        .hr2 {
+            height: 7px;
+            background-color: silver;
+        }
+
+        .F {
+            border-top: 1px solid silver;
+            border-bottom: 1px solid silver;
+        }
+
+        ul.a {
+            list-style-type: circle;
+        }
+
+        .site-footer {
+            background-color: #222;
+            color: white;
+            width: 100%;
+            margin-bottom: 0px;
+        }
+
+        .content-nav li:before {
+            content: '|';
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <img src="~/BJMSPictures/logo.png" alt=".jpg" height="60px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span> Instructions & Forms</a> </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> Help</a> </li>
+
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </div>
+        </nav>
+        <nav class="navbar navbar-inverse" style="margin-top:-20px;">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li><a href="@Url.Action("index","home")"> | <span class="glyphicon glyphicon-home"> Home</span> |</a></li>
+                    <li><a href="@Url.Action("index","author")">| <span class="glyphicon glyphicon-pencil"> Author</span> |</a></li>
+                    <li><a href="@Url.Action("index","review")">| <span class="glyphicon glyphicon-comment"> Review</span> |</a></li>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("AssociateEditor"))
+                    {
+                        <li><a asp-action="index" asp-controller="associateeditor">| <span class="glyphicon glyphicon-comment"> Associate Editor</span> |</a></li>
+                    }
+                </ul>
+            </div>
+        </nav>
+        <nav class="navbar navbar-inverse" style="margin-top:-20px; ">
+            <div class="container-fluid">
+                <p style="color:silver; margin:12px 50px;"> <a href="#">Author Dashboard</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</p>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row" style="min-height: 200px">
+            @RenderBody()
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h1><small><a href="#" style="padding:20px;">ScholarOne logo</a> </small> </h1>
+                    <address style="padding:10px; margin:10px; border-bottom:1px solid silver;">
+                        © Clarivate Analytics |  © ScholarOne, Inc., 2019. All Rights Reserved.
+                        ScholarOne Manuscripts and ScholarOne are registered trademarks of ScholarOne, Inc.
+                        ScholarOne Manuscripts Patents #7,257,767 and #7,263,655.
+                    </address>
+                    <address style="padding:10px; margin:10px; border-bottom:1px solid silver;">
+                        ScholarOneNews  |   System Requirements  |   Privacy Statement  |   Terms of Use
+                    </address>
+                </div>
+
+                <div class="col-sm-8">
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

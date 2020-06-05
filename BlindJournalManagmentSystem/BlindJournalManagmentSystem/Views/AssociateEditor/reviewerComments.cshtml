@@ -1,0 +1,54 @@
+﻿@model List<Invitation>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="col-sm-4" style="padding:35px; ">
+    <partial name="_AssociateEditorSideBar" />
+</div>
+
+<div class="col-sm-8">
+    <partial name="_SuccessErrorPartialView"></partial>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Article Title</th>
+                <th>Authors</th>
+                <th>Reviewed By</th>
+                <th>Comment for Associate Editor</th>
+                <th>Detail</th>
+                <th>Action</th>
+                <th>Save</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Invitation i in Model)
+            {
+            <tr>
+                <td>@i.Article.Title</td>
+                <td>
+                    @foreach(AuthorsAndOpposedReviewers author in i.Article.AuthorsAndOpposedReviewers)
+                    {
+                        if(author.role == "coAuthor")
+                        {
+                            <p>@author.User.Email</p>
+                        }
+                    }
+                </td>
+                <td>@i.User.FirstName</td>
+                <td>@i.ArticleReviews.Single(ar=>ar.questionid == 7).answer</td>
+                <td><a asp-action="Article" asp-controller="AssociateEditor" asp-route-id="@i.Article.Id">Detail</a></td>
+                <td>
+                    <form id="form-@i.Id" asp-action="actionOnReviewerComment" asp-route-invitationId="@i.Id">
+                        <select name="action" required>
+                            <option value="" selected disabled>----</option>
+                            <option value="readByAssociateEditor">Mark As Read</option>
+                            <option value="approveArticle">Approve Article</option>
+                        </select>
+                    </form>
+                </td>
+                <td><button type="submit" form="form-@i.Id">Save</button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

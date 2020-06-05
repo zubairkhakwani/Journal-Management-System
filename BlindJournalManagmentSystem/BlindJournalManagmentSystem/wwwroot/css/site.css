@@ -1,0 +1,112 @@
+﻿body {
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar-inverse {
+    background-color: #222222;
+    border-color: silver;
+}
+
+.table th {
+    background-color: #6495ED;
+    color: white;
+}
+
+.static {
+    position: static;
+    border: 1px solid silver;
+    height: 350px;
+    width: 800px;
+    overflow: auto;
+    border-radius: 6px;
+}
+
+.required {
+    color: red;
+    font-size: 30px;
+}
+
+.hr {
+    height: 2px;
+    background-color: silver;
+}
+
+.hr2 {
+    height: 7px;
+    background-color: silver;
+}
+
+.F {
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+}
+
+ul.a {
+    list-style-type: circle;
+}
+
+.site-footer {
+    background-color: #222;
+    color: white;
+    margin-top: 30px;
+    padding-top: 30px;
+    width: 100%;
+}
+
+.content-nav li:before {
+    content: '|';
+}
+
+
+.wrap-register{
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px -1px 20px -4px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px -1px 20px -4px rgba(0,0,0,42);
+    box-shadow: 0px -1px 20px -4px rgba(0, 0, 0, 1);
+}
+
+.wrap-login {
+    padding: 40px;
+    background-color: #fff;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px -1px 20px -4px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px -1px 20px -4px rgba(0,0,0,42);
+    box-shadow: 0px -1px 20px -4px rgba(0, 0, 0, 1);
+}
+
+.reviewArticleDetail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.reviewAnswers {
+    width: 60%;
+    margin: 0 auto;
+}

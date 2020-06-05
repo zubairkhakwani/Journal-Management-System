@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BlindJournalManagmentSystem.ViewModels.TempArticleViewModel>
+@{
+    ViewBag.Title = "incompleteSubmission";
+}
+
+    <div class="col-sm-4" style="padding:35px">
+        <partial name="_AuthorIndexSideBar" />
+    </div>
+
+<div class="col-sm-8">
+
+    <div id="00">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th> <h4 style="text-align:center">Incomplete Submissions</h4> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tempArticle in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (tempArticle.Title == null || tempArticle.Title.Equals(""))
+                            {
+                                <a href="@Url.Action("continueSubmission","author",new { @id = tempArticle.Id})">(No Title)</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("continueSubmission","author",new { @id = tempArticle.Id})">( @tempArticle.Title )</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
